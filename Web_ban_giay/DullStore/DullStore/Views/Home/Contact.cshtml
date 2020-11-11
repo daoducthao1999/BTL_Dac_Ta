@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LayoutChinh.cshtml";
+}
+
+<style>
+
+    #mapCanvas {
+        height: 600px;
+    }
+</style>
+
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaWMav1mYRKCt2nDATGcZ61B7hyHz7JDE&callback=initMap">
+    </script>
+
+   
+    <script>
+
+        // This example displays a marker at the center of Australia.
+        // When the user clicks the marker, an info window opens.
+        //21.046300, 105.793266
+        function initMap() {
+            var uluru = { lat: 21.028747, lng: 105.799373 };
+            var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+                zoom: 18,
+                center: uluru
+            });
+
+             var contentString = 'Ngõ 445 Nguyễn Khang - Cầu Giấy - Hà Nội';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                title: 'Địa chỉ'
+            });
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            
+            <div class="col-md-6">
+                <h2>Bản đồ</h2>
+                <div class="map" id="mapCanvas"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
